@@ -1,4 +1,8 @@
+import Cat from './Cat';
+
 class Catagotchi {
+  private cat: Cat;
+
   private gameDOM : Element;
 
   private displayMood : HTMLDivElement;
