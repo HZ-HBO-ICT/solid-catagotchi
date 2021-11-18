@@ -1,4 +1,4 @@
-import Cat from './Cat';
+import Cat from './Cat.js';
 
 class Catagotchi {
   private cat: Cat;
@@ -37,10 +37,10 @@ class Catagotchi {
    * Update the displays on the DOM with current state of attributes.
    */
   private updateDisplays() {
-    this.displayMood.innerHTML = String(this.cat.mood);
-    this.displayHunger.innerHTML = String(this.cat.hunger);
-    this.displayEnergy.innerHTML = String(this.cat.energy);
-    this.displayStatus.innerHTML = (this.cat.alive === true ? 'Alive' : 'Dead');
+    this.displayMood.innerHTML = String(this.cat.getMood());
+    this.displayHunger.innerHTML = String(this.cat.getHunger());
+    this.displayEnergy.innerHTML = String(this.cat.getEnergy());
+    this.displayStatus.innerHTML = (this.cat.isAlive() ? 'Alive' : 'Dead');
   }
 
   /**
@@ -49,15 +49,8 @@ class Catagotchi {
    * TODO: move the update of attributes to its own function.
    */
   public gameTick() {
-    if (this.cat.alive) {
-      if (this.cat.hunger >= 10 || this.cat.energy < 0) {
-        this.cat.catDied();
-      }
-
-      this.cat.energy -= (Math.random() > 0.7 ? 1 : 0);
-      this.cat.mood -= (Math.random() > 0.4 ? 1 : 0);
-      this.cat.hunger += (Math.random() > 0.2 ? 1 : 0);
-
+    if (this.cat.isAlive()) {
+      this.cat.ignore();
       this.updateDisplays();
     }
   }
