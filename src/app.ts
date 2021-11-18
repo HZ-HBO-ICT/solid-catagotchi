@@ -26,9 +26,7 @@ class Catagotchi {
   constructor(gameDOM : Element) {
     this.gameDOM = gameDOM;
 
-
-
-    cat.feed();
+    this.cat = new Cat();
 
     this.getDOMElements();
     this.updateDisplays();
@@ -39,10 +37,10 @@ class Catagotchi {
    * Update the displays on the DOM with current state of attributes.
    */
   private updateDisplays() {
-    this.displayMood.innerHTML = String(this.mood);
-    this.displayHunger.innerHTML = String(this.hunger);
-    this.displayEnergy.innerHTML = String(this.energy);
-    this.displayStatus.innerHTML = (this.alive === true ? 'Alive' : 'Dead');
+    this.displayMood.innerHTML = String(this.cat.mood);
+    this.displayHunger.innerHTML = String(this.cat.hunger);
+    this.displayEnergy.innerHTML = String(this.cat.energy);
+    this.displayStatus.innerHTML = (this.cat.alive === true ? 'Alive' : 'Dead');
   }
 
   /**
@@ -51,14 +49,14 @@ class Catagotchi {
    * TODO: move the update of attributes to its own function.
    */
   public gameTick() {
-    if (this.alive) {
-      if (this.hunger >= 10 || this.energy < 0) {
-        this.catDied();
+    if (this.cat.alive) {
+      if (this.cat.hunger >= 10 || this.cat.energy < 0) {
+        this.cat.catDied();
       }
 
-      this.energy -= (Math.random() > 0.7 ? 1 : 0);
-      this.mood -= (Math.random() > 0.4 ? 1 : 0);
-      this.hunger += (Math.random() > 0.2 ? 1 : 0);
+      this.cat.energy -= (Math.random() > 0.7 ? 1 : 0);
+      this.cat.mood -= (Math.random() > 0.4 ? 1 : 0);
+      this.cat.hunger += (Math.random() > 0.2 ? 1 : 0);
 
       this.updateDisplays();
     }
@@ -70,9 +68,9 @@ class Catagotchi {
     this.displayEnergy = this.gameDOM.querySelector('#displayEnergy');
     this.displayStatus = this.gameDOM.querySelector('#displayStatus');
 
-    this.gameDOM.querySelector('#buttonFeed').addEventListener('click', this.feed.bind(this));
-    this.gameDOM.querySelector('#buttonPlay').addEventListener('click', this.play.bind(this));
-    this.gameDOM.querySelector('#buttonSleep').addEventListener('click', this.sleep.bind(this));
+    this.gameDOM.querySelector('#buttonFeed').addEventListener('click', () => this.cat.feed);
+    this.gameDOM.querySelector('#buttonPlay').addEventListener('click', () => this.cat.play);
+    this.gameDOM.querySelector('#buttonSleep').addEventListener('click', () => this.cat.sleep);
   }
 
   /**
