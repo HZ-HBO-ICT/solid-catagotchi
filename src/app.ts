@@ -61,9 +61,9 @@ class Catagotchi {
     this.displayEnergy = this.gameDOM.querySelector('#displayEnergy');
     this.displayStatus = this.gameDOM.querySelector('#displayStatus');
 
-    this.gameDOM.querySelector('#buttonFeed').addEventListener('click', () => this.cat.feed);
-    this.gameDOM.querySelector('#buttonPlay').addEventListener('click', () => this.cat.play);
-    this.gameDOM.querySelector('#buttonSleep').addEventListener('click', () => this.cat.sleep);
+    this.gameDOM.querySelector('#buttonFeed').addEventListener('click', this.cat.feed);
+    this.gameDOM.querySelector('#buttonPlay').addEventListener('click', this.cat.play);
+    this.gameDOM.querySelector('#buttonSleep').addEventListener('click', this.cat.sleep);
   }
 
   /**

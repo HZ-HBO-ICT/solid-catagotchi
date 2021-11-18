@@ -51,29 +51,29 @@ export default class Cat {
   /**
    * Feed the Catagotchi. Will improve mood and reduce hunger.
    */
-  public feed(): void {
+  public feed = (): void => {
     this.hunger -= 2;
     this.mood += 1;
     this.meow();
-  }
+  };
 
   /**
    * Play with the Catagotchi. It does make Catagotchi sleepy, though.
    */
-  public play(): void {
+  public play = (): void => {
     this.mood += 1;
     this.energy -= 2;
     this.hunger += 1;
-  }
+  };
 
   /**
    * Ask Catagotchi to sleeeeep. Improved mood and energy, but makes it hungry too.
    */
-  public sleep(): void {
+  public sleep = (): void => {
     this.energy += 2;
     this.hunger += 1;
     this.mood += 1;
-  }
+  };
 
   /**
    * Returns the current amount of energy
